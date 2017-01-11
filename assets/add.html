@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Add Data</title>
+</head>
+ <script src="assets/js/jquery-3.1.1.min.js"></script>
+<body>
+    <a href="index.php">Home</a>
+    <br/><br/>
+ 
+    <form action="" method="post" name="form1">
+        <table width="25%" border="0">
+            <tr> 
+                <td>Name</td>
+                <td><input type="text" name="name" id="name"></td>
+            </tr>
+            <tr> 
+                <td>Age</td>
+                <td><input type="text" name="age" id="age"></td>
+            </tr>
+            <tr> 
+                <td>Email</td>
+                <td><input type="text" name="email" id="email"></td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td><input type="submit" name="Submit" id="add" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#add').click(function(){
+        var name= $("#name").val();
+        var age=$("#age").val();
+        var email=$("#email").val();
+        
+        $.ajax({
+            type:'post',
+            datatype:'json',
+            url:'add.php',
+            data:{'name':name,'age':age,'email':email},
+            success:function(data){
+                 alert(data);
+            },
+            error:function(data,errorThrown){
+             console.log('error'+data.status+errorThrown);
+            }
+        });
+    });
+});
+</script>
+</html>
